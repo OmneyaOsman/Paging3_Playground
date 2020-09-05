@@ -25,16 +25,16 @@ import com.omni.paging3playground.model.Photo
 /**
  * Adapter for the list of repositories.
  */
-class ReposAdapter : PagingDataAdapter<Photo, ViewHolder>(PHOTO_COMPARATOR) {
+class PhotosAdapter : PagingDataAdapter<Photo, ViewHolder>(PHOTO_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return RepoViewHolder.create(parent)
+        return PhotosViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val repoItem = getItem(position)
         if (repoItem != null) {
-            (holder as RepoViewHolder).bind(repoItem)
+            (holder as PhotosViewHolder).bind(repoItem)
         }
     }
 

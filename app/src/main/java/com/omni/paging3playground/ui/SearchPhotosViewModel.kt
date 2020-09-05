@@ -30,7 +30,7 @@ import kotlinx.coroutines.flow.Flow
  * The ViewModel works with the [GithubRepository] to get the data.
  */
 @ExperimentalCoroutinesApi
-class SearchRepositoriesViewModel(private val repository: UnsplashRepository) : ViewModel() {
+class SearchPhotosViewModel(private val repository: UnsplashRepository) : ViewModel() {
     private var currentQueryValue: String? = null
 
     private var currentSearchResult: Flow<PagingData<Photo>>? = null

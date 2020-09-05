@@ -24,7 +24,7 @@ import android.widget.TextView
 import com.omni.paging3playground.R
 import com.omni.paging3playground.model.Photo
 
-class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val name: TextView = view.findViewById(R.id.desc)
 
     private var repo: Photo? = null
@@ -46,10 +46,10 @@ class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     companion object {
-        fun create(parent: ViewGroup): RepoViewHolder {
+        fun create(parent: ViewGroup): PhotosViewHolder {
             val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_list_recipe, parent, false)
-            return RepoViewHolder(view)
+            return PhotosViewHolder(view)
         }
     }
 }
