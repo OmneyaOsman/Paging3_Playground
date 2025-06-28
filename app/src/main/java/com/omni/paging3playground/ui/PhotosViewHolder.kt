@@ -21,28 +21,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.omni.paging3playground.R
 import com.omni.paging3playground.ui.model.UnsplashPhoto
 
 class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val name: TextView = view.findViewById(R.id.desc)
+    private val shimmerContainer: ShimmerFrameLayout =
+        itemView.findViewById(R.id.shimmerContainer)
 
-    private var repo: UnsplashPhoto? = null
-
-
-    fun bind(repo: UnsplashPhoto?) {
-        if (repo == null) {
-            val resources = itemView.resources
-            name.text = resources.getString(R.string.loading)
+    fun bind(photo: UnsplashPhoto?) {
+        if (photo == null) {
+            shimmerContainer.startShimmer()
+            name.text = itemView.context.getString(R.string.loading)
         } else {
-            showRepoData(repo)
+            shimmerContainer.stopShimmer()
+            shimmerContainer.setShimmer(null)
+            name.text = photo.user
         }
-    }
-
-    private fun showRepoData(repo: UnsplashPhoto) {
-        this.repo = repo
-        name.text = repo.user
-
     }
 
     companion object {
