@@ -32,11 +32,6 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
             .get(SearchPhotosViewModel::class.java)
 
-
-        // add dividers between RecyclerView's row items
-        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        binding.list.addItemDecoration(decoration)
-
         initAdapter()
         collectState()
     }

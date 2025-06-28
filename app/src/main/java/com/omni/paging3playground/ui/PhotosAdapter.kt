@@ -16,15 +16,17 @@
 
 package com.omni.paging3playground.ui
 
+import android.animation.ValueAnimator
+import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerDrawable
 import com.omni.paging3playground.ui.model.UnsplashPhoto
 
-/**
- * Adapter for the list of repositories.
- */
+
 class PhotosAdapter : PagingDataAdapter<UnsplashPhoto, ViewHolder>(PHOTO_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
