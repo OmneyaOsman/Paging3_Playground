@@ -27,19 +27,6 @@ import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoroutinesApi
 class SearchPhotosViewModel(private val repository: UnsplashRepository) : ViewModel() {
-    private var currentQueryValue: String? = null
-
-    private var currentSearchResult: Flow<PagingData<UnsplashPhoto>>? = null
-
-    fun searchRepo(queryString: String): Flow<PagingData<UnsplashPhoto>> {
-        val lastResult = currentSearchResult
-        if (queryString == currentQueryValue && lastResult != null) {
-            return lastResult
-        }
-        currentQueryValue = queryString
-        val newResult: Flow<PagingData<UnsplashPhoto>> = repository.getPhotos()
-            .cachedIn(viewModelScope)
-        currentSearchResult = newResult
-        return newResult
-    }
+    val pagingResult = repository.getPhotos()
+        .cachedIn(viewModelScope)
 }
