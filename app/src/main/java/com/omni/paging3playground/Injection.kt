@@ -16,7 +16,6 @@
 
 package com.omni.paging3playground
 
-import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.omni.paging3playground.data.UnsplashRepository
 import com.omni.paging3playground.data.api.UnsplashApi
@@ -29,11 +28,7 @@ import com.omni.paging3playground.ui.ViewModelFactory
  */
 object Injection {
 
-    /**
-     * Creates an instance of [GithubRepository] based on the [GithubService] and a
-     * [GithubLocalCache]
-     */
-    private fun provideGithubRepository(): UnsplashRepository {
+    private fun provideUnsplashRepository(): UnsplashRepository {
         return UnsplashRepository(UnsplashApi.create())
     }
 
@@ -42,6 +37,6 @@ object Injection {
      * [ViewModel] objects.
      */
     fun provideViewModelFactory(): ViewModelProvider.Factory {
-        return ViewModelFactory(provideGithubRepository())
+        return ViewModelFactory(provideUnsplashRepository())
     }
 }
