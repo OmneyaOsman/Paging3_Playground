@@ -20,12 +20,12 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.omni.paging3playground.model.Photo
+import com.omni.paging3playground.ui.model.UnsplashPhoto
 
 /**
  * Adapter for the list of repositories.
  */
-class PhotosAdapter : PagingDataAdapter<Photo, ViewHolder>(PHOTO_COMPARATOR) {
+class PhotosAdapter : PagingDataAdapter<UnsplashPhoto, ViewHolder>(PHOTO_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return PhotosViewHolder.create(parent)
@@ -39,11 +39,11 @@ class PhotosAdapter : PagingDataAdapter<Photo, ViewHolder>(PHOTO_COMPARATOR) {
     }
 
     companion object {
-        private val PHOTO_COMPARATOR = object : DiffUtil.ItemCallback<Photo>() {
-            override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean =
+        private val PHOTO_COMPARATOR = object : DiffUtil.ItemCallback<UnsplashPhoto>() {
+            override fun areItemsTheSame(oldItem: UnsplashPhoto, newItem: UnsplashPhoto): Boolean =
                     oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean =
+            override fun areContentsTheSame(oldItem: UnsplashPhoto, newItem: UnsplashPhoto): Boolean =
                     oldItem == newItem
         }
     }

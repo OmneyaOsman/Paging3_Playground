@@ -21,27 +21,23 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.omni.paging3playground.data.UnsplashRepository
-import com.omni.paging3playground.model.Photo
+import com.omni.paging3playground.ui.model.UnsplashPhoto
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
-/**
- * ViewModel for the [SearchRepositoriesActivity] screen.
- * The ViewModel works with the [GithubRepository] to get the data.
- */
 @ExperimentalCoroutinesApi
 class SearchPhotosViewModel(private val repository: UnsplashRepository) : ViewModel() {
     private var currentQueryValue: String? = null
 
-    private var currentSearchResult: Flow<PagingData<Photo>>? = null
+    private var currentSearchResult: Flow<PagingData<UnsplashPhoto>>? = null
 
-    fun searchRepo(queryString: String): Flow<PagingData<Photo>> {
+    fun searchRepo(queryString: String): Flow<PagingData<UnsplashPhoto>> {
         val lastResult = currentSearchResult
         if (queryString == currentQueryValue && lastResult != null) {
             return lastResult
         }
         currentQueryValue = queryString
-        val newResult: Flow<PagingData<Photo>> = repository.getSearchResultStream(queryString)
+        val newResult: Flow<PagingData<UnsplashPhoto>> = repository.getPhotos()
             .cachedIn(viewModelScope)
         currentSearchResult = newResult
         return newResult

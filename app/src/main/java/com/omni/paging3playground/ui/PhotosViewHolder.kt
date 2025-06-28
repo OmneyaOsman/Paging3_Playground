@@ -22,15 +22,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.omni.paging3playground.R
-import com.omni.paging3playground.model.Photo
+import com.omni.paging3playground.ui.model.UnsplashPhoto
 
 class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val name: TextView = view.findViewById(R.id.desc)
 
-    private var repo: Photo? = null
+    private var repo: UnsplashPhoto? = null
 
 
-    fun bind(repo: Photo?) {
+    fun bind(repo: UnsplashPhoto?) {
         if (repo == null) {
             val resources = itemView.resources
             name.text = resources.getString(R.string.loading)
@@ -39,9 +39,9 @@ class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 
-    private fun showRepoData(repo: Photo) {
+    private fun showRepoData(repo: UnsplashPhoto) {
         this.repo = repo
-        name.text = repo.description
+        name.text = repo.user
 
     }
 
