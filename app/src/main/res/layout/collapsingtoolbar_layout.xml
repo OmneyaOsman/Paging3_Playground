@@ -18,14 +18,14 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:elevation="0dp"
-        android:fitsSystemWindows="true"
-        android:stateListAnimator="@null">
+        android:stateListAnimator="@null"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             app:contentScrim="@drawable/dark_background"
-            app:scrimVisibleHeightTrigger="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
@@ -33,11 +33,12 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/dark_background"
+                android:background="@null"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="enterAlways|snap"
-                app:title="Details"
-                app:titleCentered="true"/>
+                app:navigationIcon="@android:drawable/arrow_down_float"
+                app:title="transfers_manage_transfers_details_transfer_details"
+                app:titleCentered="true"
+                app:titleTextAppearance="?textAppearanceBodyMedium" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,8 +47,7 @@
                 android:layout_marginTop="?actionBarSize"
                 android:background="@drawable/bg_top_round_rect"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                app:layout_collapseMode="parallax">
+                android:paddingEnd="16dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/manage_recurring_transactions_details_icon"
@@ -68,7 +68,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_icon"
-                    android:text="Anthony Hopkins" />
+                    tools:text="Anthony Hopkins" />
 
                 <TextView
                     android:id="@+id/manage_recurring_transactions_details_amount"
@@ -79,7 +79,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_beneficiary_name"
-                    android:text="1,000.00 SAR" />
+                    tools:text="1,000.00 SAR" />
 
                 <TextView
                     android:id="@+id/manage_recurring_transactions_details_due_date"
@@ -92,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_amount"
-                    android:text="25 April, 2025 - 19:42:00" />
+                    tools:text="Upcoming Due on 25 April, 2025 - 19:42:00" />
 
 
                 <com.google.android.material.card.MaterialCardView
@@ -111,7 +111,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/manage_recurring_transactions_details_account_number_label"
                             android:layout_width="match_parent"
@@ -150,7 +149,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_transaction_type_label"
                             tools:text="Scheduled payment" />
-
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/manage_recurring_transactions_details_frequency_label"
                             android:layout_width="match_parent"
@@ -190,7 +188,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_end_date_label"
                             tools:text="25 March, 2026" />
-
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/manage_recurring_transactions_details_purpose_label"
                             android:layout_width="match_parent"
@@ -223,11 +220,19 @@
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tab_bg"
-            app:layout_scrollFlags="enterAlways|snap"
+            android:clipToPadding="true"
+            app:tabGravity="fill"
             app:tabIndicator="@null"
-            app:tabMode="fixed"/>
+            app:tabMode="fixed"
+            app:tabPadding="0dp"
+            app:tabPaddingBottom="0dp"
+            app:tabPaddingEnd="0dp"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingTop="0dp"
+            app:tabUnboundedRipple="false" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
