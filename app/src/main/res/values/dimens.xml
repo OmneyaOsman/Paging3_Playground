@@ -2,4 +2,5 @@
 <resources>
     <dimen name="row_item_margin_vertical">16dp</dimen>
     <dimen name="repo_name_size">16sp</dimen>
+    <dimen name="dp_330">330dp</dimen>
 </resources>

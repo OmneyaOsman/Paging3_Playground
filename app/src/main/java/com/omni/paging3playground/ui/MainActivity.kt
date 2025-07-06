@@ -3,75 +3,53 @@ package com.omni.paging3playground.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
-import androidx.recyclerview.widget.DividerItemDecoration
-import com.omni.paging3playground.Injection
+import android.widget.TextView
+import com.google.android.material.tabs.TabLayoutMediator
+import com.omni.paging3playground.R
+import com.omni.paging3playground.collapsing.CollapsingViewPager
+import com.omni.paging3playground.collapsing.pageOffscreenLimit
 import com.omni.paging3playground.databinding.ActivityMainBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: SearchPhotosViewModel
-    private val adapter = PhotosAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        setupViewPager()
+        supportActionBar?.hide()
 
-        // get the view model
-        viewModel = ViewModelProvider(this, Injection.provideViewModelFactory())
-            .get(SearchPhotosViewModel::class.java)
-
-        initAdapter()
-        collectState()
     }
 
+    private lateinit var adapter: CollapsingViewPager
 
-    private fun initAdapter() {
-        binding.list.adapter = adapter
-
-        // ✅ plug a footer that shows LOAD-MORE progress & retry
-        binding.list.adapter = adapter.withLoadStateFooter(
-            footer = PhotoLoadStateAdapter { adapter.retry() }
-        )
-    }
-
-    private fun collectState() {
-
-        lifecycleScope.launch {
-            viewModel.pagingResult.collect {
-                adapter.submitData(it)
-            }
+    private fun setupViewPager() {
+        adapter = CollapsingViewPager(supportFragmentManager, lifecycle)
+        binding.manageRecurringTransactionsStatusViewpager.apply {
+            adapter = this@MainActivity.adapter
+            offscreenPageLimit = pageOffscreenLimit
+            isUserInputEnabled = false
         }
-        // Scroll to top when the list is refreshed from network.
-        lifecycleScope.launch {
-            adapter.loadStateFlow
-                // Only emit when REFRESH LoadState for RemoteMediator changes.
-                .distinctUntilChangedBy { it.refresh }
-                // Only react to cases where Remote REFRESH completes i.e., NotLoading.
-                .filter { it.refresh is LoadState.NotLoading }
-                .collect { binding.list.scrollToPosition(0) }
-        }
-    }
 
-    private fun showEmptyList(show: Boolean) {
-        if (show) {
-            binding.emptyList.visibility = View.VISIBLE
-            binding.list.visibility = View.GONE
-        } else {
-            binding.emptyList.visibility = View.GONE
-            binding.list.visibility = View.VISIBLE
-        }
-    }
+        TabLayoutMediator(
+            binding.recurringTransactionStatusTabLayout,
+            binding.manageRecurringTransactionsStatusViewpager
+        ) { tab, position ->
+            val custom = layoutInflater.inflate(
+                R.layout.recurring_transfer_status_tab_item,
+                binding.recurringTransactionStatusTabLayout,
+                false
+            )
+            custom.findViewById<TextView>(R.id.tab_title).text = adapter.title(position)
+            tab.customView = custom
 
+        }.attach()
+    }
 }
+
+
