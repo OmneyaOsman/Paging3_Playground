@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_icon"
-        tools:text="Anthony Hopkins" />
+        android:text="Anthony Hopkins" />
 
     <TextView
         android:id="@+id/manage_recurring_transactions_details_amount"
@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_beneficiary_name"
-        tools:text="1,000.00 SAR" />
+        android:text="1,000.00 SAR" />
 
     <TextView
         android:id="@+id/manage_recurring_transactions_details_due_date"
@@ -44,11 +44,10 @@
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:paddingBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/manage_recurring_transactions_details_info_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_amount"
-        tools:text="Upcoming Due on 25 April, 2025 - 19:42:00" />
+        android:text=" 25 April, 2025 - 19:42:00" />
 
 
     <com.google.android.material.card.MaterialCardView
@@ -58,7 +57,6 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/manage_recurring_transactions_details_due_date">

@@ -14,23 +14,41 @@
         android:layout_marginTop="?actionBarSize"
         android:background="@drawable/bg_top_round_rect" />
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="top"
+        android:background="@null"
+        android:minHeight="?android:attr/actionBarSize"
+        android:stateListAnimator="@null"
+        app:elevation="0dp"
+        app:layout_collapseMode="pin"
+        app:layout_scrollFlags="enterAlways|snap"
+        app:title="Details"
+        app:titleCentered="true" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarOfferDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:stateListAnimator="@null"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/ctExclusiveOffer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:titleEnabled="false"
             android:minHeight="?android:attr/actionBarSize"
+            android:stateListAnimator="@null"
+            app:elevation="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:scrimVisibleHeightTrigger="@dimen/dp_330"
-            app:statusBarScrim="@android:color/white">
+            app:scrimVisibleHeightTrigger="?actionBarSize"
+            app:statusBarScrim="@android:color/white"
+            app:titleEnabled="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clCollapsedOffer"
@@ -39,32 +57,18 @@
                 android:layout_gravity="bottom"
                 android:layout_marginTop="?android:attr/actionBarSize"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0">
+                app:layout_constraintDimensionRatio="21:11">
 
                 <include
                     android:id="@+id/layoutExclusiveOffer"
                     layout="@layout/header_info_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_margin="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="top"
-                android:background="@null"
-                android:minHeight="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="enterAlways|snap"
-                app:title="Details"
-                app:titleCentered="true" />
-
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -76,9 +80,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tab_bg"
+            android:stateListAnimator="@null"
+            app:elevation="0dp"
             app:layout_scrollFlags="enterAlways|snap"
             app:tabIndicator="@null"
-            app:tabMode="fixed"/>
+            app:tabMode="fixed" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -86,6 +92,7 @@
         android:id="@+id/manage_recurring_transactions_status_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
     <ProgressBar
